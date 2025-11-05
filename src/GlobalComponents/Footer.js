@@ -15,7 +15,7 @@ const Footer = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
-  // API Configuration - Change this for testing
+  // API Configuration
   const API_URL = process.env.NODE_ENV === 'development' 
     ? 'http://127.0.0.1:8000/api/contact/'
     : 'https://www.mfundodev.com/api/contact/';
@@ -48,41 +48,41 @@ const Footer = () => {
 
   const fastLinks = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
-    { name: "Tech-Expertise", path: "/services" }
+    { name: "Products", path: "/products" },
+    { name: "Skincare", path: "/skincare" },
+    { name: "Makeup", path: "/makeup" },
+    { name: "About Us", path: "/about" },
+    { name: "Consultation", path: "/consultation" }
   ];
 
   const socialLinks = [
     {
-      name: "GitHub",
-      url: "https://github.com/Mfundo-code",
+      name: "Instagram",
+      url: "https://instagram.com/muhlecosmetics",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" 
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      )
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/mfundo-dlamini-b95028302",
-      icon: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" 
-                stroke="currentColor" strokeWidth="2"/>
-          <rect x="2" y="9" width="4" height="12" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="4" cy="4" r="2" stroke="currentColor" strokeWidth="2"/>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2"/>
+          <circle cx="18" cy="6" r="1" fill="currentColor"/>
         </svg>
       )
     },
     {
       name: "Facebook",
-      url: "https://www.facebook.com/profile.php?id=61550078235370",
+      url: "https://facebook.com/muhlecosmetics",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" 
                 stroke="currentColor" strokeWidth="2"/>
+        </svg>
+      )
+    },
+    {
+      name: "TikTok",
+      url: "https://tiktok.com/@muhlecosmetics",
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M9 12a4 4 0 1 0 4 4V6a3 3 0 1 0 3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
         </svg>
       )
     },
@@ -154,7 +154,7 @@ const Footer = () => {
       if (response.ok) {
         setSubmitStatus({ 
           type: 'success', 
-          message: 'Thank you for your message! I have received it and will respond to you personally soon.' 
+          message: 'Thank you for your message! We have received it and will respond to you personally soon.' 
         });
         setFormData({ name: '', email: '', message: '' });
       } else {
@@ -193,7 +193,7 @@ const Footer = () => {
     }
   };
 
-  // Canvas animation
+  // Canvas animation - Updated for cosmetics theme
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -205,7 +205,7 @@ const Footer = () => {
     let connections = [];
     const mouse = { x: 0, y: 0, active: false };
 
-    const techSymbols = ['⚡', '🚀', '💻', '🔗', '🌐', '📱', '🔧', '🎯', '✨', '🌟'];
+    const cosmeticSymbols = ['✨', '🌸', '💎', '🌟', '🌿', '💖', '⭐', '🌺', '🌼', '🌷'];
 
     class Node {
       constructor(x, y) {
@@ -213,13 +213,13 @@ const Footer = () => {
         this.y = y;
         this.baseSize = Math.random() * 8 + 4;
         this.size = this.baseSize;
-        this.symbol = techSymbols[Math.floor(Math.random() * techSymbols.length)];
+        this.symbol = cosmeticSymbols[Math.floor(Math.random() * cosmeticSymbols.length)];
         this.pulseSpeed = 0.03 + Math.random() * 0.03;
         this.pulseOffset = Math.random() * Math.PI * 2;
         this.vx = (Math.random() - 0.5) * 0.4;
         this.vy = (Math.random() - 0.5) * 0.4;
         this.opacity = 0.2 + Math.random() * 0.3;
-        this.hue = Math.random() * 60 + 200;
+        this.hue = Math.random() * 40 + 320; // Pink/purple hues
         this.glowIntensity = 0.5 + Math.random() * 0.5;
       }
 
@@ -351,7 +351,7 @@ const Footer = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)';
+      ctx.strokeStyle = 'rgba(236, 72, 153, 0.08)';
       ctx.lineWidth = 0.8;
       const gridSize = 50;
 
@@ -425,10 +425,10 @@ const Footer = () => {
 
   const styles = {
     container: {
-      background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)",
-      color: "#1a1a1a",
-      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      borderTop: "1px solid rgba(0, 0, 0, 0.1)",
+      background: "linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)",
+      color: "#831843",
+      fontFamily: "'Playfair Display', 'Cormorant Garamond', 'Georgia', serif",
+      borderTop: "1px solid rgba(255, 255, 255, 0.3)",
       position: "relative",
       paddingTop: isMobile ? "120px" : "200px",
       overflow: "hidden",
@@ -476,7 +476,7 @@ const Footer = () => {
       fontSize: isMobile ? "1.1rem" : "1.3rem",
       fontWeight: "700",
       margin: "0 0 15px 0",
-      background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+      background: "linear-gradient(135deg, #ec4899 0%, #d946ef 100%)",
       backgroundClip: "text",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
@@ -487,20 +487,20 @@ const Footer = () => {
       display: "flex",
       flexDirection: "column",
       gap: "12px",
-      background: "linear-gradient(135deg, rgba(248, 249, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%)",
+      background: "linear-gradient(135deg, rgba(252, 231, 243, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%)",
       backdropFilter: "blur(15px)",
       padding: isMobile ? "20px" : "24px",
       borderRadius: "20px",
-      boxShadow: "0 20px 60px rgba(99, 102, 241, 0.2), 0 10px 30px rgba(0, 0, 0, 0.15)",
-      border: "1px solid rgba(99, 102, 241, 0.2)",
+      boxShadow: "0 20px 60px rgba(236, 72, 153, 0.2), 0 10px 30px rgba(0, 0, 0, 0.15)",
+      border: "1px solid rgba(236, 72, 153, 0.2)",
       width: "100%",
     },
     input: {
       padding: isMobile ? "10px 12px" : "12px 14px",
       borderRadius: "10px",
-      border: "1px solid #e1e5e9",
+      border: "1px solid #f9a8d4",
       backgroundColor: "#ffffff",
-      color: "#333333",
+      color: "#831843",
       fontSize: isMobile ? "0.85rem" : "0.9rem",
       fontFamily: "inherit",
       transition: "all 0.3s ease",
@@ -509,9 +509,9 @@ const Footer = () => {
     textarea: {
       padding: isMobile ? "10px 12px" : "12px 14px",
       borderRadius: "10px",
-      border: "1px solid #e1e5e9",
+      border: "1px solid #f9a8d4",
       backgroundColor: "#ffffff",
-      color: "#333333",
+      color: "#831843",
       fontSize: isMobile ? "0.85rem" : "0.9rem",
       fontFamily: "inherit",
       transition: "all 0.3s ease",
@@ -523,17 +523,19 @@ const Footer = () => {
       padding: isMobile ? "10px 20px" : "12px 24px",
       border: "none",
       borderRadius: "10px",
-      background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+      background: "linear-gradient(135deg, #ec4899 0%, #d946ef 100%)",
       color: "#ffffff",
       fontSize: isMobile ? "0.85rem" : "0.9rem",
       fontWeight: "700",
       cursor: "pointer",
-      fontFamily: "inherit",
+      fontFamily: "'Cormorant Garamond', serif",
       transition: "all 0.3s ease",
-      boxShadow: "0 6px 20px rgba(99, 102, 241, 0.4)",
+      boxShadow: "0 6px 20px rgba(236, 72, 153, 0.4)",
       marginTop: "6px",
       opacity: isSubmitting ? 0.7 : 1,
       pointerEvents: isSubmitting ? "none" : "auto",
+      textTransform: "uppercase",
+      letterSpacing: "1px",
     },
     statusMessage: {
       padding: "10px",
@@ -565,10 +567,10 @@ const Footer = () => {
       width: isMobile ? "36px" : "40px",
       height: isMobile ? "36px" : "40px",
       borderRadius: "10px",
-      background: "rgba(99, 102, 241, 0.15)",
+      background: "rgba(236, 72, 153, 0.15)",
       backdropFilter: "blur(15px)",
-      border: "1px solid rgba(99, 102, 241, 0.25)",
-      color: "#6366f1",
+      border: "1px solid rgba(236, 72, 153, 0.25)",
+      color: "#ec4899",
       textDecoration: "none",
       transition: "all 0.3s ease",
     },
@@ -590,13 +592,13 @@ const Footer = () => {
     },
     linkButton: {
       display: "block",
-      padding: "13.5px 16px",
+      padding: "11.2.5px 16px",
       background: "rgba(255, 255, 255, 0.85)",
       backdropFilter: "blur(15px)",
       borderRadius: "10px",
-      border: "1px solid rgba(99, 102, 241, 0.15)",
+      border: "1px solid rgba(236, 72, 153, 0.15)",
       textDecoration: "none",
-      color: "#1a1a1a",
+      color: "#831843",
       transition: "all 0.3s ease",
       cursor: "pointer",
     },
@@ -609,10 +611,10 @@ const Footer = () => {
     linkButtonText: {
       fontSize: isMobile ? "0.85rem" : "0.9rem",
       fontWeight: "600",
-      color: "#1a1a1a",
+      color: "#831843",
     },
     linkButtonIcon: {
-      color: "#6366f1",
+      color: "#ec4899",
       flexShrink: 0,
     },
     contactColumn: {
@@ -628,28 +630,28 @@ const Footer = () => {
       background: "rgba(255, 255, 255, 0.85)",
       backdropFilter: "blur(15px)",
       borderRadius: "10px",
-      border: "1px solid rgba(99, 102, 241, 0.15)",
+      border: "1px solid rgba(236, 72, 153, 0.15)",
     },
     contactIcon: {
-      color: "#6366f1",
+      color: "#ec4899",
       flexShrink: 0,
       marginTop: "2px",
     },
     contactLabel: {
       fontSize: isMobile ? "0.7rem" : "0.75rem",
-      color: "rgba(26, 26, 26, 0.6)",
+      color: "rgba(131, 24, 67, 0.6)",
       margin: "0 0 3px 0",
     },
     contactValue: {
       fontSize: isMobile ? "0.85rem" : "0.9rem",
       fontWeight: "600",
-      color: "#1a1a1a",
+      color: "#831843",
       textDecoration: "none",
       transition: "color 0.3s ease",
     },
     bottomBar: {
       borderTop: "4px solid",
-      borderImage: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) 1",
+      borderImage: "linear-gradient(135deg, #ec4899 0%, #d946ef 100%) 1",
       background: "rgba(255, 255, 255, 0.9)",
       backdropFilter: "blur(15px)",
       padding: isMobile ? "20px" : "25px 40px",
@@ -659,8 +661,9 @@ const Footer = () => {
     },
     copyright: {
       margin: "0",
-      color: "rgba(26, 26, 26, 0.7)",
+      color: "rgba(131, 24, 67, 0.7)",
       fontSize: isMobile ? "0.8rem" : "0.9rem",
+      fontFamily: "'Cormorant Garamond', serif",
     },
   };
 
@@ -679,7 +682,7 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h3 style={styles.sectionTitle}>Get In Touch</h3>
+          <h3 style={styles.sectionTitle}>Get Beauty Advice</h3>
           
           <div style={styles.form}>
             <motion.input
@@ -708,7 +711,7 @@ const Footer = () => {
             />
             <motion.textarea
               name="message"
-              placeholder="Your Message"
+              placeholder="Your beauty questions or concerns..."
               value={formData.message}
               onChange={handleInputChange}
               style={styles.textarea}
@@ -726,7 +729,7 @@ const Footer = () => {
               whileHover={!isSubmitting ? { scale: 1.05, y: -2 } : {}}
               whileTap={!isSubmitting ? { scale: 0.95 } : {}}
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? "Sending..." : "Get Advice"}
             </motion.button>
 
             {submitStatus && (
@@ -750,7 +753,7 @@ const Footer = () => {
                   style={styles.socialLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visit my ${social.name}`}
+                  aria-label={`Visit our ${social.name}`}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, scale: 0 }}
@@ -833,7 +836,7 @@ const Footer = () => {
               </svg>
               <div>
                 <p style={styles.contactLabel}>Email</p>
-                <a href="mailto:mfundoknox@gmail.com" style={styles.contactValue}>mfundoknox@gmail.com</a>
+                <a href="mailto:info@muhlecosmetics.com" style={styles.contactValue}>info@muhlecosmetics.com</a>
               </div>
             </div>
 
@@ -847,6 +850,17 @@ const Footer = () => {
                 <a href="https://wa.me/27761353762" style={styles.contactValue}>+27 76 135 3762</a>
               </div>
             </div>
+
+            <div style={styles.contactItem}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={styles.contactIcon}>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <div>
+                <p style={styles.contactLabel}>Location</p>
+                <span style={styles.contactValue}>South Africa</span>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -858,7 +872,7 @@ const Footer = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <p style={styles.copyright}>
-          © {currentYear} Mfundo Dlamini. All rights reserved.
+          © {currentYear} Muhle Cosmetics. All rights reserved. | Natural Beauty, Perfected
         </p>
       </motion.div>
     </footer>

@@ -4,101 +4,105 @@ import { motion } from "framer-motion";
 export default function CallToActionSection() {
   return (
     <section style={styles.section} aria-labelledby="cta-heading">
-      {/* Tech-themed background with code particles */}
-      <div style={styles.techBackground}>
+      {/* Cosmetics-themed background with floral elements */}
+      <div style={styles.cosmeticsBackground}>
         <motion.svg 
           viewBox="0 0 1200 120" 
           preserveAspectRatio="none" 
-          style={styles.circuitSvg}
+          style={styles.floralSvg}
           animate={{
-            x: [0, -100, 0],
+            x: [0, -50, 0],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
         >
           <defs>
-            <linearGradient id="circuitGradient" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="#64ffda" />
-              <stop offset="50%" stopColor="#00c9ff" />
-              <stop offset="100%" stopColor="#0284c7" />
+            <linearGradient id="floralGradient" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="#f9a8d4" />
+              <stop offset="50%" stopColor="#ec4899" />
+              <stop offset="100%" stopColor="#d946ef" />
             </linearGradient>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,255,218,0.1)" strokeWidth="0.5"/>
+            <pattern id="floralGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="1" fill="rgba(249, 168, 212, 0.1)" />
+              <circle cx="10" cy="10" r="0.5" fill="rgba(236, 72, 153, 0.1)" />
+              <circle cx="30" cy="30" r="0.5" fill="rgba(217, 70, 239, 0.1)" />
             </pattern>
           </defs>
 
-          {/* Grid background */}
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          {/* Floral background */}
+          <rect width="100%" height="100%" fill="url(#floralGrid)" />
           
-          {/* Circuit lines */}
+          {/* Floral pattern lines */}
           <motion.path
-            d="M0,60 Q300,30 600,60 T1200,60"
+            d="M0,80 Q200,40 400,80 T800,80 T1200,80"
             fill="none"
-            stroke="url(#circuitGradient)"
-            strokeWidth="2"
-            strokeOpacity="0.3"
+            stroke="url(#floralGradient)"
+            strokeWidth="1.5"
+            strokeOpacity="0.2"
             animate={{
               d: [
-                "M0,60 Q300,30 600,60 T1200,60",
-                "M0,50 Q300,80 600,50 T1200,50",
-                "M0,70 Q300,40 600,70 T1200,70",
-                "M0,60 Q300,30 600,60 T1200,60"
+                "M0,80 Q200,40 400,80 T800,80 T1200,80",
+                "M0,60 Q200,100 400,60 T800,60 T1200,60",
+                "M0,100 Q200,60 400,100 T800,100 T1200,100",
+                "M0,80 Q200,40 400,80 T800,80 T1200,80"
               ]
             }}
             transition={{
-              duration: 8,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
         </motion.svg>
 
-        {/* Code particles */}
-        {[10, 25, 40, 60, 75, 90].map((left, index) => (
+        {/* Sparkle particles */}
+        {[15, 30, 50, 65, 85].map((left, index) => (
           <motion.div
             key={index}
-            style={{ ...styles.codeParticle, left: `${left}%` }}
+            style={{ ...styles.sparkleParticle, left: `${left}%` }}
             animate={{ 
-              y: [0, -60, 0],
+              y: [0, -40, 0],
               opacity: [0, 1, 0],
-              scale: [0, 1, 0],
+              scale: [0, 1.2, 0],
               rotate: [0, 180, 360]
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               repeat: Infinity,
-              delay: index * 0.6,
+              delay: index * 0.8,
               ease: "easeOut"
             }}
           >
-            {['</>', '{ }', '=>', '()', '[]', '/*'][index]}
+            ✨
           </motion.div>
         ))}
 
-        {/* Binary rain effect */}
-        <div style={styles.binaryRain}>
-          {Array.from({ length: 15 }).map((_, i) => (
+        {/* Flower petal effect */}
+        <div style={styles.petalRain}>
+          {Array.from({ length: 12 }).map((_, i) => (
             <motion.div
               key={i}
               style={{
-                ...styles.binaryDigit,
-                left: `${(i * 5) + Math.random() * 5}%`,
-                animationDelay: `${Math.random() * 5}s`
+                ...styles.petal,
+                left: `${(i * 8) + Math.random() * 8}%`,
+                fontSize: `${12 + Math.random() * 8}px`,
               }}
               animate={{
-                y: [0, 300],
-                opacity: [0, 1, 0]
+                y: [0, 250],
+                x: [0, Math.random() * 20 - 10],
+                rotate: [0, Math.random() * 360],
+                opacity: [0, 0.7, 0]
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 8 + Math.random() * 4,
                 repeat: Infinity,
-                delay: Math.random() * 2
+                delay: Math.random() * 3
               }}
             >
-              {Math.random() > 0.5 ? '1' : '0'}
+              {['🌸', '🌺', '🌼', '🌷', '💮', '🏵️'][Math.floor(Math.random() * 6)]}
             </motion.div>
           ))}
         </div>
@@ -113,7 +117,7 @@ export default function CallToActionSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Let's Build Something Amazing Together
+            Discover Your Natural Beauty
           </motion.h2>
 
           <motion.p 
@@ -122,9 +126,9 @@ export default function CallToActionSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            I specialize in creating scalable web applications with modern technologies. 
-            Whether you need a full-stack application, API integration, or performance optimization — 
-            I deliver clean, efficient code that solves real problems.
+            Experience the perfect blend of nature and luxury with our premium skincare 
+            and makeup collections. Transform your beauty routine with products that 
+            nourish your skin while enhancing your natural radiance.
           </motion.p>
 
           <motion.div 
@@ -137,22 +141,37 @@ export default function CallToActionSection() {
               style={styles.primaryBtn}
               whileHover={{ 
                 scale: 1.05, 
-                boxShadow: "0 15px 30px rgba(100, 255, 218, 0.4)",
+                boxShadow: "0 15px 30px rgba(236, 72, 153, 0.4)",
                 y: -2
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
-                window.open("https://github.com/Mfundo-code", "_blank");
+                window.open("/shop", "_self");
               }}
-              aria-label="Visit my GitHub profile"
+              aria-label="Explore our product collection"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ marginRight: 10 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style={{ marginRight: 12 }}>
                 <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
                   fill="currentColor"
                 />
               </svg>
-              Visit my GitHub
+              Shop Collection
+            </motion.button>
+
+            <motion.button
+              style={styles.secondaryBtn}
+              whileHover={{ 
+                scale: 1.05,
+                y: -2
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                window.open("/consultation", "_self");
+              }}
+              aria-label="Book a beauty consultation"
+            >
+              Book Consultation
             </motion.button>
           </motion.div>
         </div>
@@ -166,28 +185,38 @@ export default function CallToActionSection() {
           <motion.div 
             style={styles.contactCard} 
             role="region" 
-            aria-label="Contact information"
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            aria-label="Beauty consultation information"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div style={styles.codeIconWrap}>
+            <div style={styles.beautyIconWrap}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
-                  d="M16 18l6-6-6-6M8 6l-6 6 6 6"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  fill="white"
                 />
               </svg>
             </div>
 
             <div style={styles.contactContent}>
-              <div style={styles.contactText}>Get in touch</div>
-              <a href="mailto:mfundoknox@gmail.com" style={styles.email} aria-label="Send email">
-                mfundoknox@gmail.com
+              <div style={styles.contactText}>Free Beauty Consultation</div>
+              <a href="tel:+1234567890" style={styles.phone} aria-label="Call for consultation">
+                (123) 456-7890
               </a>
-              <div style={styles.small}>Fast response — Let's discuss your project</div>
+              <div style={styles.small}>Personalized skincare advice — Let's find your perfect routine</div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            style={styles.guaranteeCard}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div style={styles.guaranteeIcon}>✓</div>
+            <div style={styles.guaranteeText}>
+              <strong>100% Satisfaction Guarantee</strong>
+              <span>30-day return policy on all products</span>
             </div>
           </motion.div>
         </motion.div>
@@ -200,55 +229,52 @@ const styles = {
   section: {
     position: "relative",
     overflow: "hidden",
-    background: "linear-gradient(135deg, #0a0f1c 0%, #0c1220 50%, #090d18 100%)",
-    padding: "60px 20px",
-    fontFamily: "'Inter', 'Fira Code', 'JetBrains Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace",
-    borderTop: "1px solid rgba(255,255,255,0.05)",
+    background: "linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)",
+    padding: "80px 20px",
+    fontFamily: "'Playfair Display', 'Cormorant Garamond', 'Georgia', serif",
+    borderTop: "1px solid rgba(255,255,255,0.3)",
   },
-  techBackground: {
+  cosmeticsBackground: {
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     overflow: "hidden",
-    background: "radial-gradient(circle at 20% 80%, rgba(100, 255, 218, 0.05) 0%, transparent 50%)",
+    background: "radial-gradient(circle at 80% 20%, rgba(249, 168, 212, 0.1) 0%, transparent 50%)",
   },
-  circuitSvg: {
+  floralSvg: {
     position: "absolute",
     bottom: 0,
     left: 0,
     width: "100%",
     height: "100%",
-    opacity: 0.6,
+    opacity: 0.4,
   },
-  codeParticle: {
+  sparkleParticle: {
     position: "absolute",
-    bottom: "10%",
-    color: "rgba(100, 255, 218, 0.7)",
-    fontSize: "12px",
+    bottom: "15%",
+    color: "rgba(236, 72, 153, 0.6)",
+    fontSize: "16px",
     fontWeight: "bold",
-    fontFamily: "'Fira Code', monospace",
   },
-  binaryRain: {
+  petalRain: {
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   },
-  binaryDigit: {
+  petal: {
     position: "absolute",
-    color: "rgba(100, 255, 218, 0.3)",
-    fontSize: "10px",
-    fontFamily: "'Fira Code', monospace",
-    fontWeight: "bold",
+    color: "rgba(236, 72, 153, 0.4)",
+    fontFamily: "Arial",
   },
   container: {
     maxWidth: 1200,
     margin: "0 auto",
     display: "flex",
-    gap: "30px",
+    gap: "40px",
     alignItems: "center",
     justifyContent: "space-between",
     flexWrap: "wrap",
@@ -256,39 +282,33 @@ const styles = {
     zIndex: 2,
   },
   left: {
-    flex: "1 1 520px",
+    flex: "1 1 600px",
     minWidth: 280,
   },
   title: {
-    fontSize: "clamp(1.8rem, 4vw, 2.2rem)",
+    fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
     margin: 0,
-    color: "#ffffff",
-    lineHeight: 1.15,
+    color: "#831843",
+    lineHeight: 1.1,
     fontWeight: 700,
-    background: "linear-gradient(135deg, #ffffff 0%, #64ffda 50%, #00c9ff 100%)",
-    backgroundClip: "text",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    textShadow: "0 4px 30px rgba(100, 255, 218, 0.3)",
     letterSpacing: "-0.01em",
-    marginBottom: "1rem",
-    fontFeatureSettings: "'calt' 1, 'ss01' 1",
+    marginBottom: "1.5rem",
   },
   description: {
     marginTop: 0,
-    color: "rgba(240, 246, 255, 0.85)",
-    fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
+    color: "#701a75",
+    fontSize: "clamp(1.1rem, 2vw, 1.3rem)",
     maxWidth: 640,
-    lineHeight: 1.5,
+    lineHeight: 1.6,
     fontWeight: 400,
-    textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-    marginBottom: "1.5rem",
+    textShadow: "0 2px 20px rgba(255,255,255,0.5)",
+    marginBottom: "2rem",
     letterSpacing: "0.01em",
   },
   actions: {
     marginTop: 0,
     display: "flex",
-    gap: "0.8rem",
+    gap: "1rem",
     flexWrap: "wrap",
     alignItems: "center",
   },
@@ -296,74 +316,123 @@ const styles = {
     display: "inline-flex",
     alignItems: "center",
     gap: "8px",
-    padding: "14px 28px",
+    padding: "16px 32px",
     borderRadius: "50px",
-    background: "linear-gradient(135deg, #00c9ff 0%, #64ffda 100%)",
-    color: "#0a1128",
+    background: "linear-gradient(135deg, #ec4899 0%, #d946ef 100%)",
+    color: "white",
     border: "none",
     textDecoration: "none",
     fontWeight: 600,
-    fontSize: "0.95rem",
-    boxShadow: "0 8px 25px rgba(100, 255, 218, 0.3), 0 0 0 1px rgba(100, 255, 218, 0.1)",
+    fontSize: "1.1rem",
+    boxShadow: "0 8px 25px rgba(236, 72, 153, 0.3), 0 0 0 1px rgba(236, 72, 153, 0.1)",
     transition: "all 0.3s ease",
-    letterSpacing: "0.01em",
+    letterSpacing: "0.02em",
     cursor: "pointer",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Cormorant Garamond', serif",
+    textTransform: "uppercase",
+  },
+  secondaryBtn: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "14px 28px",
+    borderRadius: "50px",
+    background: "transparent",
+    color: "#831843",
+    border: "2px solid #831843",
+    textDecoration: "none",
+    fontWeight: 600,
+    fontSize: "1rem",
+    transition: "all 0.3s ease",
+    letterSpacing: "0.02em",
+    cursor: "pointer",
+    fontFamily: "'Cormorant Garamond', serif",
+    textTransform: "uppercase",
   },
   right: {
-    flex: "0 0 300px",
-    minWidth: 260,
+    flex: "0 0 320px",
+    minWidth: 280,
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
+    gap: "1.5rem",
     alignItems: "flex-end",
   },
   contactCard: {
     display: "flex",
-    gap: "0.8rem",
+    gap: "1rem",
     alignItems: "center",
     width: "100%",
-    background: "rgba(255,255,255,0.06)",
-    color: "white",
-    padding: "16px",
-    borderRadius: "16px",
-    boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
-    border: "1px solid rgba(255,255,255,0.1)",
+    background: "rgba(255,255,255,0.8)",
+    color: "#831843",
+    padding: "20px",
+    borderRadius: "20px",
+    boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
+    border: "1px solid rgba(255,255,255,0.9)",
     backdropFilter: "blur(10px)",
   },
-  codeIconWrap: {
-    width: "50px",
-    height: "50px",
-    borderRadius: "14px",
-    background: "linear-gradient(135deg, #00c9ff 0%, #64ffda 100%)",
+  beautyIconWrap: {
+    width: "60px",
+    height: "60px",
+    borderRadius: "16px",
+    background: "linear-gradient(135deg, #ec4899 0%, #d946ef 100%)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
-    boxShadow: "0 4px 15px rgba(100, 255, 218, 0.3)",
+    boxShadow: "0 4px 15px rgba(236, 72, 153, 0.3)",
   },
   contactContent: {
     display: "flex",
     flexDirection: "column",
-    gap: "0.3rem",
+    gap: "0.4rem",
     alignItems: "flex-start",
   },
   contactText: {
-    fontSize: "0.8rem",
+    fontSize: "0.9rem",
     opacity: 0.95,
     fontWeight: 600,
-    color: "rgba(240, 246, 255, 0.9)",
+    color: "#831843",
   },
-  email: {
-    fontSize: "1.1rem",
+  phone: {
+    fontSize: "1.2rem",
     fontWeight: 700,
-    color: "#64ffda",
+    color: "#ec4899",
     textDecoration: "none",
     lineHeight: 1,
   },
   small: {
-    fontSize: "0.75rem",
+    fontSize: "0.8rem",
     opacity: 0.8,
-    color: "rgba(240, 246, 255, 0.7)",
+    color: "#701a75",
+  },
+  guaranteeCard: {
+    display: "flex",
+    gap: "0.8rem",
+    alignItems: "center",
+    width: "100%",
+    background: "rgba(255,255,255,0.9)",
+    color: "#065f46",
+    padding: "16px",
+    borderRadius: "16px",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(255,255,255,0.9)",
+  },
+  guaranteeIcon: {
+    width: "32px",
+    height: "32px",
+    borderRadius: "50%",
+    background: "#10b981",
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    fontWeight: "bold",
+    fontSize: "16px",
+  },
+  guaranteeText: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.2rem",
   }
 };
