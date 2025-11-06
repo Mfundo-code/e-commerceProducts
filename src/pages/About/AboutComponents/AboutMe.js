@@ -5,49 +5,39 @@ export default function AboutMe() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
-  // recruiter-focused data pulled from your portfolio
+  // cosmetics-focused data
   const stats = [
-    { number: "1+", label: "Years Experience" },
-    { number: "10+", label: "Projects Completed" },
-    { number: "15+", label: "Happy Clients" }
-  ];
-
-  const availability = [
-    "Short Gigs",
-    "Short to Long Term Contracts",
-    "Fulltime"
+    { number: "5+", label: "Years of Excellence" },
+    { number: "100%", label: "Natural Ingredients" },
+    { number: "5K+", label: "Happy Customers" }
   ];
 
   const services = [
-    "Web Development — responsive websites & web apps",
-    "Mobile Apps — cross-platform with React Native",
-    "Desktop Applications — Electron (Windows, macOS, Linux)",
-    "Backend & API Development — Django, .NET, RESTful APIs",
+    "Skincare — cleansers, serums, moisturizers",
+    "Makeup — foundation, lipstick, eyeshadow",
+    "Body Care — lotions, scrubs, oils",
+    "Fragrances — perfumes, body mists"
   ];
 
-  const techStack = [
-    "JavaScript", "React", "React Native", "Python Django",
-    "C# .NET", "HTML5", "CSS3", "SQL Databases"
+  const ingredients = [
+    "Organic Oils", "Botanical Extracts", "Hyaluronic Acid", "Vitamin C",
+    "Shea Butter", "Aloe Vera", "Jojoba Oil", "Rose Water"
   ];
 
-  const hostingPlatforms = ["AWS Amplify", "PythonAnywhere", "Contabo"];
+  const certifications = ["Cruelty-Free", "Vegan", "Organic", "Dermatologist Tested"];
 
-  const featuredProjects = [
-  
+  const featuredProducts = [
     {
-      name: "Mobile Apps",
-      summary:
-        "Cross-platform mobile apps. Used react native, swift and koltin"
+      name: "Glow Serum",
+      summary: "Our best-selling serum with Vitamin C and Hyaluronic Acid for radiant skin"
     },
     {
-      name: "Websites",
-
-      summary:
-        "Websites, I have mantained dns, seo and domains"
+      name: "Matte Lipstick",
+      summary: "Long-lasting, non-drying lipstick in 12 shades"
     }
   ];
 
-  // --- Canvas animation (unchanged except kept inside the same effect) ---
+  // Canvas animation for cosmetics theme
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -59,7 +49,7 @@ export default function AboutMe() {
     let connections = [];
     const mouse = { x: 0, y: 0, active: false };
 
-    const techSymbols = ['⚡', '🚀', '💻', '🔗', '🌐', '📱', '🔧', '🎯', '✨', '🌟'];
+    const cosmeticSymbols = ['✨', '🌸', '💎', '🌟', '🌿', '💖', '⭐', '🌺', '🌼', '🌷'];
 
     class Node {
       constructor(x, y) {
@@ -67,13 +57,13 @@ export default function AboutMe() {
         this.y = y;
         this.baseSize = Math.random() * 6 + 4;
         this.size = this.baseSize;
-        this.symbol = techSymbols[Math.floor(Math.random() * techSymbols.length)];
+        this.symbol = cosmeticSymbols[Math.floor(Math.random() * cosmeticSymbols.length)];
         this.pulseSpeed = 0.02 + Math.random() * 0.02;
         this.pulseOffset = Math.random() * Math.PI * 2;
         this.vx = (Math.random() - 0.5) * 0.3;
         this.vy = (Math.random() - 0.5) * 0.3;
         this.opacity = 0.1 + Math.random() * 0.2;
-        this.hue = Math.random() * 60 + 200;
+        this.hue = Math.random() * 40 + 320; // Pink/purple hues
       }
 
       update() {
@@ -93,15 +83,15 @@ export default function AboutMe() {
           this.x, this.y, 0,
           this.x, this.y, this.size * 3
         );
-        gradient.addColorStop(0, `hsla(${this.hue}, 70%, 60%, ${this.opacity * 0.3})`);
-        gradient.addColorStop(1, `hsla(${this.hue}, 70%, 60%, 0)`);
+        gradient.addColorStop(0, `hsla(${this.hue}, 70%, 70%, ${this.opacity * 0.3})`);
+        gradient.addColorStop(1, `hsla(${this.hue}, 70%, 70%, 0)`);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`;
+        ctx.fillStyle = `hsla(${this.hue}, 70%, 70%, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -138,9 +128,9 @@ export default function AboutMe() {
           this.node1.x, this.node1.y,
           this.node2.x, this.node2.y
         );
-        gradient.addColorStop(0, `hsla(${this.node1.hue}, 70%, 60%, ${alpha * 0.3})`);
-        gradient.addColorStop(0.5, `hsla(${(this.node1.hue + this.node2.hue) / 2}, 80%, 70%, ${alpha * 0.5})`);
-        gradient.addColorStop(1, `hsla(${this.node2.hue}, 70%, 60%, ${alpha * 0.3})`);
+        gradient.addColorStop(0, `hsla(${this.node1.hue}, 70%, 70%, ${alpha * 0.3})`);
+        gradient.addColorStop(0.5, `hsla(${(this.node1.hue + this.node2.hue) / 2}, 80%, 80%, ${alpha * 0.5})`);
+        gradient.addColorStop(1, `hsla(${this.node2.hue}, 70%, 70%, ${alpha * 0.3})`);
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 1;
@@ -205,7 +195,7 @@ export default function AboutMe() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.03)';
+      ctx.strokeStyle = 'rgba(236, 72, 153, 0.03)';
       ctx.lineWidth = 0.5;
       const gridSize = 40;
 
@@ -274,14 +264,13 @@ export default function AboutMe() {
     };
   }, []);
 
-  // --- Render UI ---
   return (
     <section ref={containerRef} style={styles.section} aria-labelledby="about-heading">
       <canvas ref={canvasRef} style={styles.canvas} aria-hidden="true" />
 
       <div style={styles.container}>
         <div style={styles.content}>
-          {/* Left: richer text + recruiter info */}
+          {/* Left: brand story + cosmetics info */}
           <motion.div
             style={styles.left}
             initial={{ opacity: 0, x: -30 }}
@@ -295,7 +284,7 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              About Me
+              Our Beauty Story
             </motion.h2>
 
             <motion.p
@@ -304,13 +293,13 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              I'm a full-stack developer building modern web, mobile and desktop solutions.
-              I deliver production-ready apps using JavaScript (React, React Native), Python Django, and C#/.NET.
-              I've worked with 15+ clients and delivered 10+ projects across platforms — focusing on maintainability,
-              clean APIs, and user-centered design.
+              At Muhle Cosmetics, we believe beauty begins with healthy skin. Our journey started 
+              with a simple mission: to create products that enhance your natural radiance while 
+              providing the nourishment and care your skin deserves. Every formulation is crafted 
+              with love, expertise, and the finest natural ingredients.
             </motion.p>
 
-            {/* Recruiter quick facts */}
+            {/* Brand quick facts */}
             <div style={styles.quickFacts}>
               <div style={styles.factsLeft}>
                 {stats.map((s, i) => (
@@ -322,32 +311,31 @@ export default function AboutMe() {
               </div>
 
               <div style={styles.factsRight}>
-                <h4 style={styles.smallTitle}>Availability</h4>
-                <div style={styles.availabilityTags}>
-                  {availability.map((a, idx) => (
-                    <span key={idx} style={styles.availabilityTagSmall}>{a}</span>
+                <h4 style={styles.smallTitle}>Our Promise</h4>
+                <div style={styles.certificationTags}>
+                  {certifications.map((cert, idx) => (
+                    <span key={idx} style={styles.certificationTag}>{cert}</span>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Experience */}
+            {/* Brand Philosophy */}
             <motion.div
               style={styles.sectionCard}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <h3 style={styles.cardTitle}>Experience</h3>
+              <h3 style={styles.cardTitle}>Our Philosophy</h3>
               <div style={styles.experienceItem}>
                 <div style={styles.experienceHeader}>
-                  <strong>Freelance Full-Stack Developer</strong>
-                  <span style={styles.experienceDate}>2024 - Present</span>
+                  <strong>Natural Beauty, Enhanced</strong>
                 </div>
                 <ul style={styles.bullets}>
-                  <li>Designed and delivered custom solutions for 15+ clients (mobile, desktop, websites)</li>
-                  <li>Implemented backends with .NET Framework and Django; built RESTful APIs</li>
-                  <li>Managed deployments, maintained client relationships and project timelines</li>
+                  <li>We use only the purest natural ingredients sourced responsibly</li>
+                  <li>Every product is dermatologist tested and cruelty-free</li>
+                  <li>Our formulations are designed to work with your skin's natural biology</li>
                 </ul>
               </div>
             </motion.div>
@@ -359,7 +347,7 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <h3 style={styles.cardTitle}>Services</h3>
+              <h3 style={styles.cardTitle}>Product Categories</h3>
               <ul style={styles.serviceList}>
                 {services.map((s, i) => <li key={i}>{s}</li>)}
               </ul>
@@ -367,26 +355,22 @@ export default function AboutMe() {
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
-
               <a
-                href="mailto:mfundoknox@gmail.com"
+                href="/products"
+                style={styles.ctaPrimary}
+              >
+                Shop Collection
+              </a>
+              <a
+                href="/consultation"
                 style={styles.ctaSecondary}
               >
-                Contact — mfundoknox@gmail.com
-              </a>
-
-              <a
-                href="https://github.com/Mfundo-code"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.ctaGhost}
-              >
-                View GitHub
+                Book Consultation
               </a>
             </div>
           </motion.div>
 
-          {/* Right: stats + tech + featured projects */}
+          {/* Right: stats + ingredients + featured products */}
           <motion.div
             style={styles.right}
             initial={{ opacity: 0, x: 30 }}
@@ -439,49 +423,49 @@ export default function AboutMe() {
               ))}
             </div>
 
-            {/* Tech Stack */}
+            {/* Ingredients */}
             <motion.div
               style={{ ...styles.sectionCard, marginTop: 20, width: '100%' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.45 }}
             >
-              <h4 style={styles.cardTitle}>Technical Expertise</h4>
-              <div style={styles.stackGrid}>
-                {techStack.map((t, i) => (
-                  <div key={i} style={styles.techBadge}>{t}</div>
+              <h4 style={styles.cardTitle}>Key Ingredients</h4>
+              <div style={styles.ingredientsGrid}>
+                {ingredients.map((ingredient, i) => (
+                  <div key={i} style={styles.ingredientBadge}>{ingredient}</div>
                 ))}
               </div>
 
-              <div style={{ marginTop: 12 }}>
-                <strong>Hosting:</strong> {hostingPlatforms.join(" • ")}
+              <div style={{ marginTop: 12, color: '#831843', fontSize: '0.9rem' }}>
+                <strong>Quality Promise:</strong> All ingredients are sustainably sourced and ethically harvested
               </div>
             </motion.div>
 
-            {/* Featured Projects */}
+            {/* Featured Products */}
             <motion.div
               style={{ ...styles.sectionCard, marginTop: 18, width: '100%' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.55 }}
             >
-              <h4 style={styles.cardTitle}>Featured Projects</h4>
+              <h4 style={styles.cardTitle}>Customer Favorites</h4>
               <div>
-                {featuredProjects.map((p, i) => (
-                  <div key={i} style={styles.projectItem}>
-                    <a href={p.href} target="_blank" rel="noopener noreferrer" style={styles.projectLink}>
-                      {p.name}
+                {featuredProducts.map((product, i) => (
+                  <div key={i} style={styles.productItem}>
+                    <a href="/products" style={styles.productLink}>
+                      {product.name}
                     </a>
-                    <div style={styles.projectSummary}>{p.summary}</div>
+                    <div style={styles.productSummary}>{product.summary}</div>
                   </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Quick contact */}
+            {/* Contact info */}
             <div style={{ marginTop: 14, width: '100%', textAlign: 'center' }}>
-              <small style={{ color: '#64748b' }}>
-                Want a CV or full case studies? Reply here or email <a href="mailto:mfundoknox@gmail.com">mfundoknox@gmail.com</a>
+              <small style={{ color: '#701a75' }}>
+                Questions about our products? <a href="mailto:info@muhlecosmetics.com" style={{color: '#ec4899'}}>info@muhlecosmetics.com</a>
               </small>
             </div>
           </motion.div>
@@ -494,10 +478,10 @@ export default function AboutMe() {
 const styles = {
   section: {
     padding: '40px 20px',
-    background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+    background: 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)',
     position: 'relative',
     overflow: 'hidden',
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontFamily: "'Playfair Display', 'Cormorant Garamond', 'Georgia', serif",
     borderRadius: '24px',
     margin: '20px',
     border: '1px solid rgba(255, 255, 255, 0.9)',
@@ -539,20 +523,21 @@ const styles = {
   },
   title: {
     fontSize: 'clamp(2rem, 4vw, 2.6rem)',
-    fontWeight: 800,
-    color: '#1e293b',
+    fontWeight: 700,
+    color: '#831843',
     margin: '0 0 12px 0',
     lineHeight: 1.05,
-    background: 'linear-gradient(135deg, #1e293b 0%, #475569 50%, #6366f1 100%)',
+    background: 'linear-gradient(135deg, #831843 0%, #be185d 50%, #d946ef 100%)',
     backgroundClip: 'text',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    textShadow: '0 4px 30px rgba(99, 102, 241, 0.08)',
+    textShadow: '0 4px 30px rgba(216, 112, 147, 0.1)',
+    fontFamily: "'Playfair Display', serif",
   },
   description: {
     fontSize: '1.05rem',
     lineHeight: 1.6,
-    color: '#475569',
+    color: '#701a75',
     margin: '0 0 18px 0',
     fontWeight: 400,
     background: 'rgba(255, 255, 255, 0.7)',
@@ -560,6 +545,7 @@ const styles = {
     padding: '14px',
     borderRadius: '12px',
     border: '1px solid rgba(255, 255, 255, 0.8)',
+    fontFamily: "'Cormorant Garamond', serif",
   },
   quickFacts: {
     display: 'flex',
@@ -578,17 +564,17 @@ const styles = {
     padding: '8px 12px',
     background: 'rgba(255,255,255,0.9)',
     borderRadius: 12,
-    border: '1px solid rgba(0,0,0,0.03)',
-    boxShadow: '0 8px 20px rgba(99, 102, 241, 0.04)'
+    border: '1px solid rgba(236, 72, 153, 0.1)',
+    boxShadow: '0 8px 20px rgba(236, 72, 153, 0.04)'
   },
   factNumber: {
     fontSize: '1.25rem',
     fontWeight: 800,
-    color: '#6366f1',
+    color: '#ec4899',
   },
   factLabel: {
     fontSize: '0.85rem',
-    color: '#64748b',
+    color: '#831843',
     fontWeight: 600,
   },
   factsRight: {
@@ -597,16 +583,16 @@ const styles = {
   smallTitle: {
     fontSize: '0.95rem',
     margin: '0 0 8px 0',
-    color: '#1f2937',
+    color: '#831843',
     fontWeight: 700,
   },
-  availabilityTags: {
+  certificationTags: {
     display: 'flex',
     gap: 8,
     flexWrap: 'wrap',
   },
-  availabilityTagSmall: {
-    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+  certificationTag: {
+    background: 'linear-gradient(135deg, #ec4899 0%, #d946ef 100%)',
     color: 'white',
     padding: '6px 10px',
     borderRadius: 14,
@@ -619,13 +605,14 @@ const styles = {
     padding: '14px',
     borderRadius: 12,
     marginTop: 12,
-    border: '1px solid rgba(255,255,255,0.9)'
+    border: '1px solid rgba(236, 72, 153, 0.1)'
   },
   cardTitle: {
     margin: '0 0 8px 0',
     fontSize: '1rem',
-    fontWeight: 800,
-    color: '#0f172a'
+    fontWeight: 700,
+    color: '#831843',
+    fontFamily: "'Playfair Display', serif",
   },
   experienceItem: {
     marginTop: 6,
@@ -637,43 +624,42 @@ const styles = {
   },
   experienceDate: {
     fontSize: 12,
-    color: '#64748b',
+    color: '#701a75',
     fontWeight: 600
   },
   bullets: {
     marginTop: 8,
-    paddingLeft: 20
+    paddingLeft: 20,
+    color: '#701a75'
   },
   serviceList: {
     listStyle: 'disc',
     marginLeft: 18,
-    paddingLeft: 6
+    paddingLeft: 6,
+    color: '#701a75'
   },
   ctaPrimary: {
-    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+    background: 'linear-gradient(135deg, #ec4899 0%, #d946ef 100%)',
     color: 'white',
     padding: '10px 16px',
     borderRadius: 10,
     fontWeight: 700,
-    textDecoration: 'none'
+    textDecoration: 'none',
+    fontFamily: "'Cormorant Garamond', serif",
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
   },
   ctaSecondary: {
     background: 'white',
-    color: '#1f2937',
+    color: '#831843',
     padding: '10px 14px',
     borderRadius: 10,
     fontWeight: 700,
-    border: '1px solid rgba(99,102,241,0.12)',
-    textDecoration: 'none'
-  },
-  ctaGhost: {
-    background: 'transparent',
-    color: '#475569',
-    padding: '10px 14px',
-    borderRadius: 10,
-    fontWeight: 700,
+    border: '1px solid rgba(236, 72, 153, 0.2)',
     textDecoration: 'none',
-    border: '1px dashed rgba(99,102,241,0.12)'
+    fontFamily: "'Cormorant Garamond', serif",
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
   },
   statsGrid: {
     display: 'grid',
@@ -687,7 +673,7 @@ const styles = {
     padding: '18px',
     borderRadius: '12px',
     textAlign: 'center',
-    border: '1px solid rgba(255,255,255,0.9)',
+    border: '1px solid rgba(236, 72, 153, 0.1)',
     boxShadow: '0 10px 28px rgba(0,0,0,0.06)',
     position: 'relative',
     overflow: 'hidden'
@@ -695,12 +681,12 @@ const styles = {
   statNumber: {
     fontSize: '2rem',
     fontWeight: 900,
-    color: '#6366f1',
+    color: '#ec4899',
     marginBottom: 6
   },
   statLabel: {
     fontSize: '0.95rem',
-    color: '#64748b',
+    color: '#831843',
     fontWeight: 600
   },
   cardAccent: {
@@ -708,37 +694,38 @@ const styles = {
     bottom: 0,
     left: 0,
     height: '3px',
-    background: 'linear-gradient(90deg, #6366f1, #8b5cf6)',
+    background: 'linear-gradient(90deg, #ec4899, #d946ef)',
     borderRadius: '0 0 12px 12px'
   },
-  stackGrid: {
+  ingredientsGrid: {
     display: 'flex',
     flexWrap: 'wrap',
     gap: 10,
     marginTop: 8
   },
-  techBadge: {
+  ingredientBadge: {
     padding: '6px 8px',
     borderRadius: 10,
-    background: 'rgba(99,102,241,0.06)',
-    border: '1px solid rgba(99,102,241,0.08)',
+    background: 'rgba(236, 72, 153, 0.08)',
+    border: '1px solid rgba(236, 72, 153, 0.15)',
     fontWeight: 700,
     fontSize: '0.85rem',
-    color: '#334155'
+    color: '#831843'
   },
-  projectItem: {
+  productItem: {
     marginTop: 10,
     paddingTop: 8,
-    borderTop: '1px dashed rgba(15,23,42,0.04)'
+    borderTop: '1px dashed rgba(131, 24, 67, 0.1)'
   },
-  projectLink: {
+  productLink: {
     fontWeight: 800,
     textDecoration: 'none',
-    color: '#111827'
+    color: '#831843',
+    fontFamily: "'Playfair Display', serif",
   },
   projectSummary: {
     fontSize: '0.92rem',
-    color: '#475569',
+    color: '#701a75',
     marginTop: 6
   }
 };
