@@ -31,30 +31,30 @@ export default function Header({ cartCount = 0 }) {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  // Theme colors matching hero
-  const ACCENT_A = '#00c9ff';
-  const ACCENT_B = '#64ffda';
+  // Muhle Cosmetics color scheme
+  const ACCENT_A = '#ec4899'; // Pink
+  const ACCENT_B = '#d946ef'; // Purple
 
   // Base styles
   const filledStyle = {
     background: `linear-gradient(90deg, ${ACCENT_B}, ${ACCENT_A})`,
-    color: '#071127',
+    color: '#ffffff',
     border: 'none',
-    boxShadow: '0 10px 30px rgba(100,255,218,0.12)',
+    boxShadow: '0 10px 30px rgba(236, 72, 153, 0.12)',
   };
   const transparentStyle = {
     background: 'transparent',
-    color: '#dff7fb',
-    border: `1px solid rgba(100,255,218,0.07)`,
+    color: '#fdf2f8',
+    border: `1px solid rgba(236, 72, 153, 0.07)`,
     boxShadow: 'none',
   };
 
-  // Slightly-dimmed variant for active state: almost same as filled but softer
+  // Slightly-dimmed variant for active state
   const activeSoftFilled = {
     background: `linear-gradient(90deg, ${ACCENT_B}, ${ACCENT_A})`,
-    color: '#071127',
+    color: '#ffffff',
     border: 'none',
-    boxShadow: '0 6px 18px rgba(100,255,218,0.08)',
+    boxShadow: '0 6px 18px rgba(236, 72, 153, 0.08)',
     filter: 'brightness(0.95)',
     transform: 'translateY(0)',
   };
@@ -71,12 +71,12 @@ export default function Header({ cartCount = 0 }) {
       padding: '10px 20px',
       backdropFilter: 'blur(8px)',
       WebkitBackdropFilter: 'blur(8px)',
-      background: 'transparent',
-      borderBottom: 'none',
-      boxShadow: '0 6px 30px rgba(2,8,23,0.6)',
+      background: 'rgba(253, 242, 248, 0.9)',
+      borderBottom: '1px solid rgba(236, 72, 153, 0.1)',
+      boxShadow: '0 6px 30px rgba(236, 72, 153, 0.1)',
       alignSelf: 'stretch',
       minHeight: 64,
-      fontFamily: "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+      fontFamily: "'Playfair Display', 'Cormorant Garamond', 'Georgia', serif",
     },
     logoContainer: {
       display: 'flex',
@@ -88,7 +88,7 @@ export default function Header({ cartCount = 0 }) {
       height: 44,
       width: 'auto',
       display: 'block',
-      filter: 'drop-shadow(0 6px 18px rgba(0, 201, 255, 0.06))',
+      filter: 'drop-shadow(0 6px 18px rgba(236, 72, 153, 0.06))',
     },
     nav: {
       display: 'flex',
@@ -129,14 +129,14 @@ export default function Header({ cartCount = 0 }) {
     }),
     cartIcon: {
       fontSize: 18,
-      color: '#071127',
+      color: '#ffffff',
     },
     cartBadge: {
       position: 'absolute',
       top: -6,
       right: -6,
-      background: ACCENT_B,
-      color: '#00121a',
+      background: '#ffffff',
+      color: '#ec4899',
       borderRadius: 99,
       width: 20,
       height: 20,
@@ -145,7 +145,8 @@ export default function Header({ cartCount = 0 }) {
       justifyContent: 'center',
       fontSize: 12,
       fontWeight: 700,
-      boxShadow: '0 6px 18px rgba(100,255,218,0.12)'
+      boxShadow: '0 6px 18px rgba(236, 72, 153, 0.12)',
+      border: '1px solid rgba(236, 72, 153, 0.1)'
     },
     mobileNav: {
       display: 'flex',
@@ -155,7 +156,7 @@ export default function Header({ cartCount = 0 }) {
     mobileMenuOverlay: {
       position: 'fixed',
       inset: 0,
-      background: 'linear-gradient(180deg, rgba(0,0,0,0.45), rgba(2,6,12,0.6))',
+      background: 'linear-gradient(180deg, rgba(236, 72, 153, 0.45), rgba(217, 70, 239, 0.6))',
       zIndex: 200,
       display: 'flex',
       justifyContent: 'flex-end',
@@ -164,9 +165,10 @@ export default function Header({ cartCount = 0 }) {
     mobileMenu: {
       width: 300,
       height: '100%',
-      background: 'linear-gradient(180deg, rgba(10,14,22,0.95), rgba(6,8,12,0.95))',
+      background: 'linear-gradient(180deg, rgba(253, 242, 248, 0.98), rgba(252, 231, 243, 0.95))',
       padding: 20,
-      boxShadow: '-20px 0 60px rgba(2,8,23,0.6)'
+      boxShadow: '-20px 0 60px rgba(236, 72, 153, 0.2)',
+      borderLeft: '1px solid rgba(236, 72, 153, 0.1)'
     },
     mobileMenuItem: (isActive) => ({
       display: 'flex',
@@ -176,9 +178,13 @@ export default function Header({ cartCount = 0 }) {
       textDecoration: 'none',
       borderRadius: 10,
       fontWeight: 600,
-      ...(isActive ? activeSoftFilled : { ...filledStyle, color: '#071127' }),
+      color: isActive ? '#ffffff' : '#831843',
+      ...(isActive ? activeSoftFilled : { background: 'rgba(255, 255, 255, 0.8)', border: '1px solid rgba(236, 72, 153, 0.1)' }),
     }),
-    mobileIcon: { fontSize: 18, color: ACCENT_B },
+    mobileIcon: { 
+      fontSize: 18, 
+      color: (isActive) => isActive ? '#ffffff' : '#ec4899' 
+    },
   };
 
   const links = [
@@ -231,7 +237,7 @@ export default function Header({ cartCount = 0 }) {
               aria-label="Open menu"
               style={{ ...styles.iconButton(mobileMenuOpen) }}
             >
-              {mobileMenuOpen ? <FaTimes style={{ fontSize: 18, color: '#071127' }} /> : <FaBars style={{ fontSize: 18, color: '#071127' }} />}
+              {mobileMenuOpen ? <FaTimes style={{ fontSize: 18, color: '#ffffff' }} /> : <FaBars style={{ fontSize: 18, color: '#ffffff' }} />}
             </button>
           </div>
         )}
@@ -245,7 +251,7 @@ export default function Header({ cartCount = 0 }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <img src={LogoB} alt="logo" style={{ height: 36 }} />
               </div>
-              <button onClick={toggleMobileMenu} style={{ background: 'none', border: 'none', color: '#dff7fb', fontSize: 20 }} aria-label="Close menu"><FaTimes /></button>
+              <button onClick={toggleMobileMenu} style={{ background: 'none', border: 'none', color: '#831843', fontSize: 20 }} aria-label="Close menu"><FaTimes /></button>
             </div>
 
             <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -253,7 +259,7 @@ export default function Header({ cartCount = 0 }) {
                 const isActive = location.pathname === l.to;
                 return (
                   <Link key={l.to} to={l.to} style={styles.mobileMenuItem(isActive)} onClick={() => setMobileMenuOpen(false)}>
-                    <span style={styles.mobileIcon}>{l.icon}</span>
+                    <span style={{...styles.mobileIcon, color: isActive ? '#ffffff' : '#ec4899'}}>{l.icon}</span>
                     <span>{l.label}</span>
                   </Link>
                 );
